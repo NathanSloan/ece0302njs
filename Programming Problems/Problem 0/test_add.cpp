@@ -6,8 +6,9 @@
 // force template expansion
 template class Add<int>;
 
-TEST_CASE("Test add", "[Add]"){
+TEST_CASE("Test add", "[Add]")
+{
 
   Add<int> a;
-  REQUIRE(a.call(1,2)==3);
+  REQUIRE(a.call(1, 2) == 3);
 }
