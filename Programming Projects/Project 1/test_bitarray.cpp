@@ -8,7 +8,7 @@
 TEST_CASE("Test bitarray construction with empty string", "[bitarray]")
 {
     std::string s("");
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
@@ -16,7 +16,7 @@ TEST_CASE("Test bitarray construction with empty string", "[bitarray]")
 
 TEST_CASE("Test toggle with bitarray default construction", "[bitarray]")
 {
-    Bitarray b;
+    BitArray b;
     REQUIRE(b.size() == 8);
     REQUIRE(b.good());
     for (int i = 0; i < b.size(); i++)
@@ -30,7 +30,7 @@ TEST_CASE("Test toggle with bitarray default construction", "[bitarray]")
 TEST_CASE("Test set with bitarray string construction", "[bitarray]")
 {
     std::string s("00101");
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
@@ -43,7 +43,7 @@ TEST_CASE("Test set with bitarray string construction", "[bitarray]")
 TEST_CASE("Test reset with bitarray string construction", "[bitarray]")
 {
     std::string s("10101");
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
@@ -54,7 +54,7 @@ TEST_CASE("Test reset with bitarray string construction", "[bitarray]")
 }
 TEST_CASE("Test set and reset with default construction", "[bitarray]")
 {
-    Bitarray b;
+    BitArray b;
     REQUIRE(b.size() == 8);
     REQUIRE(b.good());
     for (int i = 0; i < b.size(); i++)
@@ -75,20 +75,20 @@ TEST_CASE("Test set and reset with default construction", "[bitarray]")
 TEST_CASE("Test bitarray default construction", "[bitarray]")
 {
 
-    Bitarray b;
+    BitArray b;
     REQUIRE(b.size() == 8);
     REQUIRE(b.good());
 }
 
 TEST_CASE("Test bitarray construction with asString", "[bitarray]")
 {
-    Bitarray b;
+    BitArray b;
     REQUIRE(b.asString().compare("00000000") == 0);
 }
 
 TEST_CASE("Test bitarray construction size", "[bitarray]")
 {
-    Bitarray b(64);
+    BitArray b(64);
     std::string s(64, '0');
     REQUIRE(b.size() == 64);
     REQUIRE(b.good());
@@ -97,7 +97,7 @@ TEST_CASE("Test bitarray construction size", "[bitarray]")
 TEST_CASE("Test bitarray construction string", "[bitarray]")
 {
     std::string s("00101110000011000001101000001");
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);
@@ -106,14 +106,14 @@ TEST_CASE("Test bitarray construction string", "[bitarray]")
 TEST_CASE("Test bitarray construction invalid string", "[bitarray]")
 {
     std::string s("00101110000011002001101000001");
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE_FALSE(b.good());
 }
 
 TEST_CASE("Test set", "[bitarray]")
 {
     std::string s("00010001");
-    Bitarray b;
+    BitArray b;
     b.set(3);
     b.set(7);
     REQUIRE(b.size() == 8);
@@ -124,7 +124,7 @@ TEST_CASE("Test set", "[bitarray]")
 TEST_CASE("Test set with size init", "[bitarray]")
 {
     std::string s("00010");
-    Bitarray b(5);
+    BitArray b(5);
     b.set(3);
     REQUIRE(b.size() == 5);
     REQUIRE(b.good());
@@ -134,7 +134,7 @@ TEST_CASE("Test set with size init", "[bitarray]")
 TEST_CASE("Test combined", "[bitarray]")
 {
     std::string s((1 << 15) + 3, '0');
-    Bitarray b(s);
+    BitArray b(s);
     REQUIRE(b.size() == s.size());
     REQUIRE(b.good());
     REQUIRE(b.asString().compare(s) == 0);

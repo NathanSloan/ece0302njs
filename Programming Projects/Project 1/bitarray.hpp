@@ -4,23 +4,23 @@
 #include <stdlib.h>
 #include <string>
 
-class Bitarray
+class BitArray
 {
 public:
   // default constructor
-  Bitarray();
+  BitArray();
 
   // constructor with size input
-  Bitarray(intmax_t size);
+  BitArray(intmax_t size);
 
   // consntructor with string input
-  Bitarray(const std::string &value);
+  BitArray(const std::string &value);
 
   // default destructor to delete any dynamic memory
-  ~Bitarray();
+  ~BitArray();
 
-  Bitarray(const Bitarray &) = delete;
-  Bitarray &operator=(const Bitarray &) = delete;
+  BitArray(const BitArray &) = delete;
+  BitArray &operator=(const BitArray &) = delete;
 
   // method to get the size
   intmax_t size() const;

@@ -1,10 +1,10 @@
-#include "bitarray.hpp"
+#include "BitArray.hpp"
 #include <cstring>
 #include <cmath>
 #define size_of_element 8
 /* 1 uint8_t = 8 bits, int ((N-1)/8 + 1)
-the bitarray array is similar to a 2d array, with one axis being the byte position, and the other axis being the bit position */
-Bitarray::Bitarray()
+the BitArray array is similar to a 2d array, with one axis being the byte position, and the other axis being the bit position */
+BitArray::BitArray()
 {
     // size is greater than 0, therefore valid
     valid_bitarray = true;
@@ -20,7 +20,7 @@ Bitarray::Bitarray()
     memset(array_bitarray, 0, sizeof(*array_bitarray) * element_count); // from the cstring library, fills array with 0;
 }
 
-Bitarray::Bitarray(intmax_t size)
+BitArray::BitArray(intmax_t size)
 {
     if (size <= 0)
     {
@@ -43,7 +43,7 @@ Bitarray::Bitarray(intmax_t size)
     }
 }
 
-Bitarray::Bitarray(const std::string &value)
+BitArray::BitArray(const std::string &value)
 {
 
     // set valid initially
@@ -79,26 +79,26 @@ Bitarray::Bitarray(const std::string &value)
     }
 }
 
-Bitarray::~Bitarray()
+BitArray::~BitArray()
 {
     // deletes dynamically stored memory
     delete[] array_bitarray;
 }
 
 // method to get the size
-intmax_t Bitarray::size() const
+intmax_t BitArray::size() const
 {
     return size_bitarray;
 }
 
 // method to confirm is valid or invalid
-bool Bitarray::good() const
+bool BitArray::good() const
 {
     return valid_bitarray;
 }
 
 // set value to 1 at index
-void Bitarray::set(intmax_t index)
+void BitArray::set(intmax_t index)
 {
 
     // converts length from bits to bytes
@@ -114,7 +114,7 @@ void Bitarray::set(intmax_t index)
 }
 
 // set value to 0 at index
-void Bitarray::reset(intmax_t index)
+void BitArray::reset(intmax_t index)
 {
     // converts length from bits to bytes
     intmax_t element_count = ((size() - 1) / size_of_element) + 1;
@@ -130,7 +130,7 @@ void Bitarray::reset(intmax_t index)
 }
 
 // toggle the bit
-void Bitarray::toggle(intmax_t index)
+void BitArray::toggle(intmax_t index)
 {
     // converts length from bits to bytes
     intmax_t element_count = ((size() - 1) / size_of_element) + 1;
@@ -146,7 +146,7 @@ void Bitarray::toggle(intmax_t index)
 }
 
 // checking if 1 is present at index
-bool Bitarray::test(int index)
+bool BitArray::test(int index)
 {
     // assume that its valid
     if (index > size() - 1 || index < 0)
@@ -163,7 +163,7 @@ bool Bitarray::test(int index)
     return (array_bitarray[byte_position] & (1 << (bit_position % size_of_element))) / pow(2, bit_position % size_of_element);
 }
 
-std::string Bitarray::asString() const
+std::string BitArray::asString() const
 {
     // assume this is valid
     std::string my_string;
