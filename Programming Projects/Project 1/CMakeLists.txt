@@ -5,7 +5,7 @@ project(P1)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCE test_bitarray.cpp bitset.hpp bitarray.hpp bitarray.cpp)
+set(SOURCE test_bitarray.cpp bitarray.hpp bitarray.cpp)
 
 # create unittests
 add_executable(test-bitarray catch.hpp ${SOURCE})
