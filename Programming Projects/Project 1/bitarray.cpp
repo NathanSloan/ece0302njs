@@ -1,4 +1,4 @@
-#include "BitArray.hpp"
+#include "bitarray.hpp"
 #include <cstring>
 #include <cmath>
 #define size_of_element 8
