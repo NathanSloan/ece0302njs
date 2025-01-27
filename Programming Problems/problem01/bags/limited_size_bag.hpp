@@ -4,17 +4,17 @@
 #include "abstract_bag.hpp"
 
 template <typename T>
-class LimitedSizeBag: public AbstractBag<T>
+class LimitedSizeBag : public AbstractBag<T>
 {
 public:
   // default constructor
   LimitedSizeBag();
-  
+
   // add an item to the bag
-  bool add(const T & item);
-  
+  bool add(const T &item);
+
   // remove an item
-  bool remove(const T & item);
+  bool remove(const T &item);
 
   // check is the bag is empty
   bool isEmpty() const;
@@ -26,17 +26,17 @@ public:
   void clear();
 
   // count how many time item occurs in bag
-  std::size_t getFrequencyOf(const T & item) const;
+  std::size_t getFrequencyOf(const T &item) const;
 
   // check if item is in the bag
-  bool contains(const T& item) const;
+  bool contains(const T &item) const;
 
-  //static variable to store the limited size 
+  // static variable to store the limited size
   static const std::size_t maxsize = 100;
 
 private:
-
-  // TODO
+  T items[maxsize]; // Array to store the items in the bag
+  std::size_t size; // Current size of the bag
 };
 
 #include "limited_size_bag.tpp"
