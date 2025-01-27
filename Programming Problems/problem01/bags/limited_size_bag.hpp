@@ -35,8 +35,8 @@ public:
   static const std::size_t maxsize = 100;
 
 private:
-  T items[maxsize]; // Array to store the items in the bag
   std::size_t size; // Current size of the bag
+  T items[maxsize]; // Array to store the items in the bag
 };
 
 #include "limited_size_bag.tpp"
