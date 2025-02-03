@@ -3,11 +3,10 @@
 
 #include "abstract_list.hpp"
 
-template<typename T>
-class ArrayList: public AbstractList<T>
+template <typename T>
+class ArrayList : public AbstractList<T>
 {
 public:
-
   // default constructor
   ArrayList();
 
@@ -15,39 +14,38 @@ public:
   ~ArrayList();
 
   // copy constructor
-  ArrayList(const ArrayList& rhs);
+  ArrayList(const ArrayList &rhs);
 
   // copy assignment
-  ArrayList& operator=(ArrayList rhs);
+  ArrayList &operator=(ArrayList rhs);
 
-  // swap 
-  void swap(ArrayList& rhs);
-  
+  // swap
+  void swap(ArrayList &rhs);
+
   // determine if a list is empty
   bool isEmpty() const noexcept;
 
   // return current length of the list
   std::size_t getLength() const noexcept;
-  
-  // insert item at position in the list 
-  bool insert(std::size_t position, const T& item);
 
-  // remove item at position in the list 
+  // insert item at position in the list
+  bool insert(std::size_t position, const T &item);
+
+  // remove item at position in the list
   bool remove(std::size_t position);
 
   // remove all items from the list
   void clear();
 
-  // get a copy of the item at position 
+  // get a copy of the item at position
   T getEntry(std::size_t position) const;
 
-  // set the value of the item at position 
-  void setEntry(std::size_t position, const T& newValue);
+  // set the value of the item at position
+  void setEntry(std::size_t position, const T &newValue);
 
 private:
-
-  // TODO
-  
+  array_size;
+  T *my_array;
 };
 
 #include "array_list.tpp"
