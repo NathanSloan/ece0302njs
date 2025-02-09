@@ -4,42 +4,72 @@
 
 #include "algebraic_expressions.hpp"
 
-bool isoperator(char ch) {
+bool isoperator(char ch)
+{
   return ((ch == '+') || (ch == '-') || (ch == '/') || (ch == '*'));
 }
 
-int endPost(std::string s, int last) {
+int endPost(std::string s, int last)
+{
   int first = 0;
 
-  if ((first > last)) {
+  if ((first > last))
+  {
     return -1;
   }
 
   char ch = s[last];
-  if (isalpha(ch)) {
+  // returns true if ch is a letter
+  if (isalpha(ch))
+  {
     return last;
-  } else {
-    if (isoperator(ch)) {
+  }
+  else
+  {
+    if (isoperator(ch))
+    {
       int lastEnd = endPost(s, last - 1);
-      if (lastEnd > -1) {
+      if (lastEnd > -1)
+      {
         return endPost(s, lastEnd - 1);
-      } else {
+      }
+      else
+      {
         return -1;
       }
-    } else {
+    }
+    else
+    {
       return -1;
     }
   }
 }
 
-bool isPost(std::string s) {
+bool isPost(std::string s)
+{
   int firstChar = endPost(s, s.size() - 1);
 
   return (firstChar == 0);
 }
 
-void convert(const std::string &postfix, std::string &prefix) {
+void convert(const std::string &postfix, std::string &prefix)
+{
+  if (isPost(postfix))
+    throw std::invalid_argument("Invalid Postfix Expression");
 
-  // TODO
-  
+  if (isalpha(postfix[0]))
+  {
+    prefix = postfix[0] + prefix;
+  }
+  else if (isoperator(postfix[0]))
+  {
+    prefix = prefix + postfix[0];
+  }
+  else
+    throw std::invalid_argument("Invalid Postfix Expression");
+
+  if (prefix.length() == 1)
+    return;
+
+  convert(postfix.substr(1, postfix.length()), prefix);
 }
