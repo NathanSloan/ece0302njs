@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SOURCE test_postpre.cpp algebraic_expressions.hpp algebraic_expressions.cpp)
 
 add_executable(postpre-main postpre.cpp algebraic_expressions.hpp algebraic_expressions.cpp)
+add_executable(postpre-userTest postpreUser.cpp algebraic_expressions.hpp algebraic_expressions.cpp)
 add_executable(postpre-test catch.hpp ${SOURCE})
 
 enable_testing()
