@@ -7,19 +7,12 @@
 
 int main()
 {
-    std::string postfix = "13+2*";
+    std::string postfix = "ab+c*";
     std::string prefix = "";
 
-    try
-    {
-        convert(postfix, prefix);
-        std::cout << prefix << std::endl;
-    }
-    catch (std::invalid_argument ex)
-    {
-        std::cerr << ex.what() << std::endl;
-        return EXIT_FAILURE;
-    }
+    convert(postfix, prefix);
 
-    return EXIT_SUCCESS;
+    std::cout << "prefix: " << prefix << std::endl;
+
+    return 1;
 };

@@ -47,29 +47,31 @@ int endPost(std::string s, int last)
 
 bool isPost(std::string s)
 {
-  int firstChar = endPost(s, s.size() - 1);
+  int firstChar = endPost(s, s.length() - 1);
 
   return (firstChar == 0);
 }
 
 void convert(const std::string &postfix, std::string &prefix)
 {
-  if (isPost(postfix))
-    throw std::invalid_argument("Invalid Postfix Expression");
-
   if (isalpha(postfix[0]))
   {
-    prefix = postfix[0] + prefix;
+    std::cout << postfix[0] << " - isalpha" << std::endl;
+    prefix = prefix + postfix[0];
   }
   else if (isoperator(postfix[0]))
   {
-    prefix = prefix + postfix[0];
+    std::cout << postfix[0] << " - isoperator" << std::endl;
+    prefix = postfix[0] + prefix;
   }
   else
     throw std::invalid_argument("Invalid Postfix Expression");
 
-  if (prefix.length() == 1)
+  if (postfix.length() == 1)
+  {
+    std::cout << postfix.length() << std::endl;
     return;
+  }
 
   convert(postfix.substr(1, postfix.length()), prefix);
 }
