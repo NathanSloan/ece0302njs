@@ -55,23 +55,14 @@ bool isPost(std::string s)
 void convert(const std::string &postfix, std::string &prefix)
 {
   if (isalpha(postfix[0]))
-  {
-    std::cout << postfix[0] << " - isalpha" << std::endl;
     prefix = prefix + postfix[0];
-  }
   else if (isoperator(postfix[0]))
-  {
-    std::cout << postfix[0] << " - isoperator" << std::endl;
     prefix = postfix[0] + prefix;
-  }
   else
     throw std::invalid_argument("Invalid Postfix Expression");
 
   if (postfix.length() == 1)
-  {
-    std::cout << postfix.length() << std::endl;
     return;
-  }
 
   convert(postfix.substr(1, postfix.length()), prefix);
 }
