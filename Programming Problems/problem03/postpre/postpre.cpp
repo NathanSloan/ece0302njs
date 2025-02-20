@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 
   try
   {
+    if (!isPost(postfix))
+      throw std::invalid_argument("Invalid Postfix Expression");
     convert(postfix, prefix);
     std::cout << prefix << std::endl;
   }

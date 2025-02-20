@@ -7,16 +7,18 @@
 #include "algebraic_expressions.hpp"
 
 /* Provided test cases */
-TEST_CASE("Test endPost", "[postpre]") {
+TEST_CASE("Test endPost", "[postpre]")
+{
   std::string postfix_valid = "ab+";
   int test_idx_valid = 0;
   std::string postfix_invalid = "+";
   int test_idx_invalid = -1;
-  REQUIRE(endPost(postfix_valid, postfix_valid.length()-1) == test_idx_valid);
-  REQUIRE(endPost(postfix_invalid, postfix_invalid.length()-1) == test_idx_invalid);
+  REQUIRE(endPost(postfix_valid, postfix_valid.length() - 1) == test_idx_valid);
+  REQUIRE(endPost(postfix_invalid, postfix_invalid.length() - 1) == test_idx_invalid);
 }
 
-TEST_CASE("Test isPost", "[postpre]") {
+TEST_CASE("Test isPost", "[postpre]")
+{
   std::string postfix_valid = "ab+";
   std::string postfix_invalid = "+ab";
 
@@ -24,7 +26,8 @@ TEST_CASE("Test isPost", "[postpre]") {
   REQUIRE_FALSE(isPost(postfix_invalid));
 }
 
-TEST_CASE("Postpre: Test expression ab+", "[postpre]") {
+TEST_CASE("Postpre: Test expression ab+", "[postpre]")
+{
   std::string postfix = "ab+";
   std::string prefix = "";
   std::string test = "+ab";
@@ -34,7 +37,8 @@ TEST_CASE("Postpre: Test expression ab+", "[postpre]") {
   REQUIRE(prefix == test);
 }
 
-TEST_CASE("Postpre: Test other operators", "[postpre]") {
+TEST_CASE("Postpre: Test other operators", "[postpre]")
+{
   std::string postfix = "ab-";
   std::string prefix = "";
   std::string test = "-ab";
@@ -53,6 +57,18 @@ TEST_CASE("Postpre: Test other operators", "[postpre]") {
   test = "/ab";
   REQUIRE_NOTHROW(convert(postfix, prefix));
   REQUIRE(prefix == test);
+
+  postfix = "+*AB/CD";
+  prefix = "";
+  test = "+/*ABCD";
+  REQUIRE_NOTHROW(convert(postfix, prefix));
+  REQUIRE(prefix == test);
 }
 
-/* TODO: Your test cases here */
+TEST_CASE("Postpre: Test Throw Exception", "[postpre]")
+{
+  std::string postfix = "+ab";
+  std::string prefix = "";
+
+  REQUIRE_THROWS_AS(convert(postfix, prefix), std::invalid_argument);
+}

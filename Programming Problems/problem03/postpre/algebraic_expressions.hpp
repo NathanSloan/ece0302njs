@@ -1,6 +1,6 @@
 /** Functions for testing and converting postfix expressions.
  * @file algebraic_expressions.hpp
- * */ 
+ * */
 
 #ifndef _ALGEBRAICEXPRESSIONS_HPP_
 #define _ALGEBRAICEXPRESSIONS_HPP_
@@ -9,10 +9,10 @@
 
 /** Determine if a character is a valid operator.
  * @param ch character to check for operator
- * @return true if ch is one of +,-,/,*, false otherwise */ 
+ * @return true if ch is one of +,-,/,*, false otherwise */
 bool isoperator(char ch);
 
-/** Return index to the "end" of a valid postfix expression 
+/** Return index to the "end" of a valid postfix expression
  * given the index of the last character. Note that because
  * postfix expressions are formatted <postfix> <postfix> <operator>
  * the end of the expression is where the first <postfix> starts.
@@ -28,11 +28,11 @@ int endPost(std::string s, int last);
  * @return true if s is a valid postfix expression, false if not */
 bool isPost(std::string s);
 
-/** Convert the input postfix expression to prefix notation. 
+/** Convert the input postfix expression to prefix notation.
  * @param postfix string postfix expression to convert
  * @param prefix string reference to store the prefix expression
- * @throw std::invalid_argument if postfix is not a valid expression 
+ * @throw std::invalid_argument if postfix is not a valid expression
  * @post prefix contains the converted expression */
-void convert(const std::string& postfix, std::string& prefix);
+void convert(const std::string &postfix, std::string &prefix);
 
 #endif

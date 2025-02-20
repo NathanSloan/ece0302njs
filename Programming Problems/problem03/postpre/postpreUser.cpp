@@ -7,7 +7,7 @@
 
 int main()
 {
-    std::string postfix = "ab+c*";
+    std::string postfix = "+*AB/CD";
     std::string prefix = "";
 
     convert(postfix, prefix);
