@@ -2,6 +2,7 @@
 #define _LIST_HPP_
 
 #include "abstract_list.hpp"
+#include "Node.hpp"
 
 template <typename T>
 class List : public AbstractList<T>
