@@ -6,18 +6,17 @@
 #include "list.hpp"
 
 template <typename T>
-class SortedList: public AbstractSortedList<T>, private List<T>
+class SortedList : public AbstractSortedList<T>, private List<T>
 {
 public:
-
   SortedList();
 
   // constructor from list (should sort the input list)
   SortedList(List<T> unsorted_list);
 
-  SortedList(const SortedList & x);
+  SortedList(const SortedList &x);
 
-  SortedList& operator=(SortedList x);
+  SortedList &operator=(SortedList x);
 
   ~SortedList();
 
@@ -25,9 +24,9 @@ public:
 
   std::size_t getLength() const noexcept;
 
-  void insert(const T& item);
+  void insert(const T &item);
 
-  void remove(const T& item);
+  void remove(const T &item);
 
   void removeAt(std::size_t position);
 
@@ -35,14 +34,11 @@ public:
 
   T getEntry(std::size_t position) const;
 
-  long int getPosition(const T& item);
+  long int getPosition(const T &item);
 
 private:
-
-  // TODO
-
 };
 
 #include "sorted_list.tpp"
 
-#endif 
+#endif
