@@ -254,11 +254,10 @@ bool XMLParser::containsElementName(const std::string &inputString) const
 
 int XMLParser::frequencyElementName(const std::string &inputString) const
 {
+	if (tokened_input && parsed_input)
 	{
-		if (tokened_input && parsed_input)
-		{
-			return elementNameBag->getFrequencyOf(inputString);
-		}
-		throw std::logic_error("did not call tokenizedInputString and parseTokenizedInput");
-		return -1;
+		return elementNameBag->getFrequencyOf(inputString);
 	}
+	throw std::logic_error("did not call tokenizedInputString and parseTokenizedInput");
+	return -1;
+}
