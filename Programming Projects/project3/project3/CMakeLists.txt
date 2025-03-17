@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # some definitions
-set(SOURCE_STACK Stack.hpp Stack.tpp)
+set(SOURCE_OTHER Node.hpp Node.tpp Bag.hpp Bag.tpp)
+set(SOURCE_STACK Stack.hpp Stack.tpp ${SOURCE_OTHER})
 set(SOURCE_XMLPARSER XMLParser.hpp XMLParser.cpp ${SOURCE_STACK})
 set(SOURCE_XMLPARSER_TEST test_XMLParser.cpp ${SOURCE_XMLPARSER})
 set(SOURCE_XMLPARSER_MAIN mainXMLParser.cpp ${SOURCE_XMLPARSER})
