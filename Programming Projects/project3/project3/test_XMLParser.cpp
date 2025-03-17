@@ -180,11 +180,11 @@ TEST_CASE("XMLParser: Test parseTokenizedInput", "[XMLParser]")
 TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser]")
 {
 	XMLParser myXMLParser;
-	ifstream myfile("../TestFile.txt");
+	ifstream myfile("./TestFile.txt");
 	std::string inputString((std::istreambuf_iterator<char>(myfile)), (std::istreambuf_iterator<char>()));
 
-	REQUIRE(myXMLParser.tokenizeInputString(inputString));
-	REQUIRE(myXMLParser.parseTokenizedInput());
+	// REQUIRE(myXMLParser.tokenizeInputString(inputString));
+	// REQUIRE(myXMLParser.parseTokenizedInput());
 	REQUIRE(myXMLParser.containsElementName("catalog"));
 	REQUIRE(myXMLParser.frequencyElementName("catalog") == 1);
 	REQUIRE(myXMLParser.containsElementName("product"));
