@@ -9,6 +9,7 @@
 #include <string>
 #include "Bag.hpp"
 #include "Stack.hpp"
+#include <memory>
 
 /** enum definition for possible string token types. */
 enum StringTokenType

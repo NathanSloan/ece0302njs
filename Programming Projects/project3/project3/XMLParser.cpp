@@ -4,6 +4,7 @@
 	@file XMLParser.cpp */
 
 #include <string>
+#include <assert.h>
 #include "XMLParser.hpp"
 
 XMLParser::XMLParser()
