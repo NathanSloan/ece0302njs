@@ -161,10 +161,13 @@ bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
         return false; // empty tree
 
     // TODO
+
+    // do search
     Node<KeyType, ItemType> *curr;
     Node<KeyType, ItemType> *curr_parent;
     search(key, curr, curr_parent);
 
+    // item not found
     if (curr->key != key)
     {
         return false;
@@ -224,11 +227,12 @@ bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
 
     // case, item to delete has two children
     Node<KeyType, ItemType> *successor;
-    inorder(curr, successor, curr_parent);
+    inorder_successor(curr, successor, curr_parent);
 
+    // Replace the data of curr with the data of successor
     curr->key = successor->key;
     curr->data = successor->data;
-
+    // remove successor
     if (curr_parent->left == successor)
     {
         curr_parent->left = successor->right;
@@ -239,20 +243,18 @@ bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
     }
     delete successor;
     return true;
-
-    return false;
 }
 
 template <typename KeyType, typename ItemType>
 void BinarySearchTree<KeyType, ItemType>::treeSort(KeyType arr[], int arr_size)
 {
-    if (size <= 0)
+    if (arr_size <= 0)
     {
         return;
     }
 
     // TODO: check for duplicate items in the input array
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < arr_size; i++)
     {
         // TODO: use the tree to sort the array items
         if (!insert(arr[i], arr[i]))
