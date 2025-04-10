@@ -3,14 +3,14 @@
 template <typename KeyType, typename ItemType>
 BinarySearchTree<KeyType, ItemType>::BinarySearchTree()
 {
-    root = nullptr;
+    root = 0;
 }
 
 template <typename KeyType, typename ItemType>
 BinarySearchTree<KeyType, ItemType>::BinarySearchTree(
     const BinarySearchTree<KeyType, ItemType> &tree_to_copy)
 {
-    root = nullptr;
+    root = 0;
     Node<KeyType, ItemType> **this_tree_root = &root;
 
     std::stack<stackvar<KeyType, ItemType>> s;
@@ -55,16 +55,16 @@ BinarySearchTree<KeyType, ItemType>::BinarySearchTree(
 
 template <typename KeyType, typename ItemType>
 BinarySearchTree<KeyType, ItemType> &BinarySearchTree<KeyType, ItemType>::
-operator=(BinarySearchTree<KeyType, ItemType> rhs)
+operator=(BinarySearchTree<KeyType, ItemType> tree_to_copy)
 {
-    swap(rhs);
+    swap(tree_to_copy);
     return *this;
 }
 
 template <typename KeyType, typename ItemType>
-void BinarySearchTree<KeyType, ItemType>::swap(BinarySearchTree<KeyType, ItemType> &rhs)
+void BinarySearchTree<KeyType, ItemType>::swap(BinarySearchTree<KeyType, ItemType> &tree_to_swap)
 {
-    std::swap(root, rhs.root);
+    std::swap(root, tree_to_swap.root);
 }
 
 template <typename KeyType, typename ItemType>
@@ -84,7 +84,7 @@ void BinarySearchTree<KeyType, ItemType>::destroy()
         Node<KeyType, ItemType> *curr = s.top();
         s.pop();
 
-        if (curr != 0)
+        if (curr != nullptr)
         {
             s.push(curr->left);
             s.push(curr->right);
@@ -98,9 +98,9 @@ template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::insert(
     const KeyType &key, const ItemType &item)
 {
+    // TODO
     if (isEmpty())
     {
-        // add Node
         root = new Node<KeyType, ItemType>;
         root->key = key;
         root->data = item;
@@ -111,7 +111,6 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     Node<KeyType, ItemType> *curr_parent;
     search(key, curr, curr_parent);
 
-    // handle duplicates
     if (curr->key == key)
     {
         return false;
@@ -121,23 +120,21 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     new_node->key = key;
     new_node->data = item;
 
-    // place node at left or right
     if (key < curr->key)
-    { // left is key < current node
+    {
         curr->left = new_node;
     }
     else
     {
-        curr->right = new_node; // right if key > current node
+        curr->right = new_node;
     }
-    // TODO
     return true;
 }
 
 template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::isEmpty()
 {
-    return root == 0;
+    return (root == 0);
 }
 
 template <typename KeyType, typename ItemType>
@@ -146,12 +143,9 @@ bool BinarySearchTree<KeyType, ItemType>::retrieve(
 {
     Node<KeyType, ItemType> *curr;
     Node<KeyType, ItemType> *curr_parent;
-    search(key, curr, curr_parent);
+    bool found = search(key, curr, curr_parent);
 
-    if (curr == 0)
-        return false;
-
-    if (curr->key == key)
+    if (found)
     {
         item = curr->data;
         return true;
@@ -252,6 +246,45 @@ bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
 }
 
 template <typename KeyType, typename ItemType>
+void BinarySearchTree<KeyType, ItemType>::treeSort(KeyType arr[], int arr_size)
+{
+    if (arr_size <= 0)
+    {
+        return;
+    }
+
+    // TODO: check for duplicate items in the input array
+    for (int i = 0; i < arr_size; i++)
+    {
+        // TODO: use the tree to sort the array items
+        if (!insert(arr[i], arr[i]))
+        {
+            return;
+        }
+    }
+
+    // TODO: overwrite input array values with sorted values
+    int i = 0;
+    std::stack<Node<KeyType, ItemType> *> node_stack;
+    Node<KeyType, ItemType> *curr = root;
+
+    while (curr != 0 || !node_stack.empty())
+    {
+        while (curr != 0)
+        {
+            node_stack.push(curr);
+            curr = curr->left;
+        }
+
+        curr = node_stack.top();
+        node_stack.pop();
+        arr[i++] = curr->key;
+
+        curr = curr->right;
+    }
+}
+
+template <typename KeyType, typename ItemType>
 void BinarySearchTree<KeyType, ItemType>::inorder_successor(Node<KeyType, ItemType> *curr,
                                                             Node<KeyType, ItemType> *&inorder, Node<KeyType, ItemType> *&inorder_parent)
 {
@@ -311,45 +344,5 @@ bool BinarySearchTree<KeyType, ItemType>::search(KeyType key,
                 return false;
             }
         }
-    }
-}
-
-template <typename KeyType, typename ItemType>
-void BinarySearchTree<KeyType, ItemType>::treeSort(KeyType arr[], int size)
-{
-    if (size <= 0)
-    {
-        return;
-    }
-
-    // TODO: check for duplicate items in the input array
-    for (int i = 0; i < size; i++)
-    {
-        // TODO: use the tree to sort the array items
-        if (!insert(arr[i], arr[i]))
-        { // can't insert duplicates
-            return;
-        }
-    }
-
-    // TODO: overwrite input array values with sorted values
-    int i = 0;
-    std::stack<Node<KeyType, ItemType> *> node_stack; // using built in stack of c++
-    Node<KeyType, ItemType> *curr = root;
-
-    // in order traversal
-    while (curr != 0 || !node_stack.empty())
-    {
-        while (curr != 0)
-        {
-            node_stack.push(curr); // add to stack
-            curr = curr->left;     // increment to left node
-        }
-
-        curr = node_stack.top(); // get top
-        node_stack.pop();        // remove from top
-        arr[i++] = curr->key;
-
-        curr = curr->right; // go to right node
     }
 }

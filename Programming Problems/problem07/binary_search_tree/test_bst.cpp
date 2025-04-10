@@ -8,7 +8,8 @@ typedef BinarySearchTree<int, int> TreeType;
 
 /* Provided test cases */
 
-TEST_CASE("BST: Test Insert", "[insert]") {
+TEST_CASE("BST: Test Insert", "[insert]")
+{
     TreeType bst1;
 
     REQUIRE(bst1.isEmpty());
@@ -17,14 +18,16 @@ TEST_CASE("BST: Test Insert", "[insert]") {
     REQUIRE_FALSE(bst1.isEmpty());
 }
 
-TEST_CASE("BST: Test Duplicate Insert", "[duplicate insert]") {
+TEST_CASE("BST: Test Duplicate Insert", "[duplicate insert]")
+{
     TreeType bst1;
-    
+
     REQUIRE(bst1.insert(12, 12));
     REQUIRE(!bst1.insert(12, 12));
 }
 
-TEST_CASE("BST: Test Remove With No Children", "[remove]") {
+TEST_CASE("BST: Test Remove With No Children", "[remove]")
+{
     TreeType bst1;
 
     bst1.insert(10, 10);
@@ -49,7 +52,8 @@ TEST_CASE("BST: Test Remove With No Children", "[remove]") {
     REQUIRE(bst1.isEmpty());
 }
 
-TEST_CASE("BST: Test Copy Assign", "[copy assign]") {
+TEST_CASE("BST: Test Copy Assign", "[copy assign]")
+{
     TreeType bst1;
 
     bst1.insert(50, 50);
