@@ -18,31 +18,30 @@ State<T> frontier_queue<T>::pop()
   left child(i) = 2 * i + 1
   right child(i) = 2 * i + 2
   */
-  std::size_t index = 0;
+  int index = 0;
   while (true)
   {
-    std::size_t left_child = 2 * index + 1;
-    std::size_t right_child = 2 * index + 2;
-    std::size_t current_child = index;
+    int leftChild = 2 * index + 1;
+    int rightChild = 2 * index + 2;
+    int checkChild = index;
 
-    if (left_child < queue.size() && queue[left_child].getFCost() < queue[current_child].getFCost())
+    if (leftChild < queue.size() && queue[leftChild].getFCost() < queue[checkChild].getFCost())
     {
-      current_child = left_child;
+      checkChild = leftChild;
     }
-    if (right_child < queue.size() && queue[right_child].getFCost() < queue[current_child].getFCost())
+    if (rightChild < queue.size() && queue[rightChild].getFCost() < queue[checkChild].getFCost())
     {
-      current_child = right_child;
+      checkChild = rightChild;
     }
 
-    if (current_child == index)
+    if (checkChild == index)
     {
       break;
     }
     else
     {
-      std::swap(queue[index], queue[current_child]);
-      index = current_child;
-      ;
+      std::swap(queue[index], queue[checkChild]);
+      index = checkChild;
     }
   }
 
